@@ -6,11 +6,15 @@ void sieveOfEratosthenes(ll n)
 {
     vector<char> isPrime(n + 1, 1);
     isPrime[0] = isPrime[1] = 0;
-    for (ll i = 3; i * i <= n; i+=2)
+    for (ll i = 4; i <= n; i += 2) 
+    {
+        isPrime[i]=0;
+    }
+    for (ll i = 3; i * i <= n; i += 2)
     {
         if (isPrime[i])
         {
-            for (ll j = i * i; j <= n; j += i)
+            for (ll j = i * i; j <= n; j += 2*i)
             {
                 isPrime[j] = 0;
             }
