@@ -1,2 +1,2 @@
-# CP-Templates
-Curated Competitive Programming Templates in C++
+# Algo Library
+Curated code templates for Data structures & Algorithms
