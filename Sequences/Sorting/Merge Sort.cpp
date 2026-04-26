@@ -1,5 +1,5 @@
 // Time Complexity: O(nlog n)
-// Memory Complexity: O(log n)
+// Memory Complexity: O(n)
 // Stable: Yes
 // Mechanism to sort sequences by dividing into smaller sequences and recursively MERGING them
 
