@@ -66,7 +66,7 @@ ld medianOfTwo(ll a[], ll b[], ll n, ll m)
     while (left <= right)
     {
         ll partitionA = left + (right - left) / 2;
-        ll partitionB = k - partitionB;
+        ll partitionB = k - partitionA;
 
         ll maxLeftA = (!partitionA) ? LLONG_MIN : a[partitionA - 1];
         ll minRightA = (partitionA == n) ? LLONG_MAX : a[partitionA];
