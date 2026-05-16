@@ -1,5 +1,5 @@
-// Time Complexity: O(n)
-// Memory Complexity: O(1)
+// Time Complexity: O(nlogn)
+// Memory Complexity: O(logn) Recursive stack
 // Merge sort algorithm for linked lists
 
 Node *tortoiseHare(Node *head)
