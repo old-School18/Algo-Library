@@ -5,22 +5,14 @@
 // Recursive
 ll unboundedKnapsackRecurse(vector<ll> &weights, vector<ll> &values, ll W, ll idx)
 {
-    if (W < 0)
-    {
-        return -1;
-    }
     if (idx == weights.size())
     {
         return 0;
     }
 
-    ll exclude = unboundedKnapsackRecurse(weights, values, W, idx + 1);
-    ll include = unboundedKnapsackRecurse(weights, values, W - weights[idx], idx);
-    if (include != -1)
-    {
-        include += values[idx];
-    }
-    return max(exclude, include);
+    return max(unboundedKnapsackRecurse(weights, values, W, idx + 1),
+               (weights[idx] <= W) ? values[idx] + unboundedKnapsackRecurse(weights, values, W - weights[idx], idx)
+                                   : 0ll);
 }
 
 ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
@@ -31,10 +23,6 @@ ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
 // Memoization (Top-down)
 ll unboundedKnapsackMemo(vector<ll> &weights, vector<ll> &values, vector<vector<ll>> &dp, ll W, ll idx)
 {
-    if (W < 0)
-    {
-        return -1;
-    }
     if (idx == weights.size())
     {
         return 0;
@@ -44,13 +32,10 @@ ll unboundedKnapsackMemo(vector<ll> &weights, vector<ll> &values, vector<vector<
         return dp[idx][W];
     }
 
-    ll exclude = unboundedKnapsackMemo(weights, values, dp, W, idx + 1);
-    ll include = unboundedKnapsackMemo(weights, values, dp, W - weights[idx], idx);
-    if (include != -1)
-    {
-        include += values[idx];
-    }
-    return dp[idx][W] = max(exclude, include);
+    return dp[idx][W] =
+               max(unboundedKnapsackMemo(weights, values, dp, W, idx + 1),
+                   (weights[idx] <= W) ? values[idx] + unboundedKnapsackMemo(weights, values, dp, W - weights[idx], idx)
+                                       : 0ll);
 }
 
 ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
