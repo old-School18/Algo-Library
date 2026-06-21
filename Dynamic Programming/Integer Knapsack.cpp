@@ -10,9 +10,9 @@ ll unboundedKnapsackRecurse(vector<ll> &weights, vector<ll> &values, ll W, ll id
         return 0;
     }
 
-    return max(unboundedKnapsackRecurse(weights, values, W, idx + 1),
-               (weights[idx] <= W) ? values[idx] + unboundedKnapsackRecurse(weights, values, W - weights[idx], idx)
-                                   : 0ll);
+    return max((weights[idx] <= W) ? values[idx] + unboundedKnapsackRecurse(weights, values, W - weights[idx], idx)
+                                   : 0ll,
+               unboundedKnapsackRecurse(weights, values, W, idx + 1));
 }
 
 ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
@@ -33,9 +33,9 @@ ll unboundedKnapsackMemo(vector<ll> &weights, vector<ll> &values, vector<vector<
     }
 
     return dp[idx][W] =
-               max(unboundedKnapsackMemo(weights, values, dp, W, idx + 1),
-                   (weights[idx] <= W) ? values[idx] + unboundedKnapsackMemo(weights, values, dp, W - weights[idx], idx)
-                                       : 0ll);
+               max((weights[idx] <= W) ? values[idx] + unboundedKnapsackMemo(weights, values, dp, W - weights[idx], idx)
+                                       : 0ll,
+                   unboundedKnapsackMemo(weights, values, dp, W, idx + 1));
 }
 
 ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
