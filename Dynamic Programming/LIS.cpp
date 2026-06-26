@@ -1,5 +1,5 @@
 // Time Complexity: O(2^n) Recursive | O(n^2) Memoization & Tabulation | O(nlogn) Binary search
-// Memory Complexity: O(n^2) Memoization | O(n) for remaining
+// Memory Complexity: O(n^2) Memoization Inclusion-exclusion | O(n) for remaining
 // Find the length of longest increasing subsequence
 
 // Recursive
@@ -22,10 +22,10 @@ ll lis(vector<ll> &nums)
     return lisRecurse(nums, 1, 0);
 }
 
-// Memoization (Top-down)
+// Memoization (Top-down) / Inclusion-exclusion strategy
 ll lisMemo(vector<ll> &nums, vector<vector<ll>> &dp, ll idx, ll prevIdx)
 {
-    if (idx == nums.size())
+    if (idx > nums.size())
     {
         return 0;
     }
@@ -46,6 +46,37 @@ ll lis(vector<ll> &nums)
     ll n = nums.size();
     vector<vector<ll>> dp(n + 1, vector<ll>(n + 1, -1));
     return lisMemo(nums, dp, 1, 0);
+}
+
+// Memoization / Iterative strategy
+ll lisMemo(vector<ll> &nums, vector<ll> &dp, ll idx)
+{
+    if (dp[idx] != -1)
+    {
+        return dp[idx];
+    }
+    
+    ll lis = 1;
+    for (ll i = idx + 1; i <= nums.size(); i++)
+    {
+        if (nums[i - 1] > nums[idx - 1])
+        {
+            lis = max(lis, 1 + lisMemo(nums, dp, i));
+        }
+    }
+    return dp[idx] = lis;
+}
+
+ll lis(vector<ll> &nums)
+{
+    ll n = nums.size();
+    vector<ll> dp(n + 1, -1);
+    ll ans = 0;
+    for (ll i = 1; i <= n; i++)
+    {
+        ans = max(ans, lisMemo(nums, dp, i));
+    }
+    return ans;
 }
 
 // Tabulation (Bottom-up)
