@@ -93,3 +93,47 @@ ll lcs(string s, string t)
 
     return dp[n%2][m];
 }
+
+// Printing LCS
+string lcs(string s, string t)
+{
+    ll n = s.size(), m = t.size();
+    vector<vector<ll>> dp(n + 1, vector<ll>(m + 1, 0));
+    for (ll i = 1; i <= n; i++)
+    {
+        for (ll j = 1; j <= m; j++)
+        {
+            if (s[i - 1] == t[j - 1])
+            {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            }
+            else
+            {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    string lcs = "";
+
+    ll idx = n, idy = m;
+    while (idx > 0 && idy > 0)
+    {
+        if (s[idx - 1] == t[idy - 1])
+        {
+            lcs += s[idx - 1];
+            idx--, idy--;
+        }
+        else if (dp[idx - 1][idy] >= dp[idx][idy - 1])
+        {
+            idx--;
+        }
+        else
+        {
+            idy--;
+        }
+    }
+    reverse(lcs.begin(), lcs.end());
+
+    return lcs;
+}
