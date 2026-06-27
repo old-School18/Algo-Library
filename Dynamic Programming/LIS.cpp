@@ -48,7 +48,7 @@ ll lis(vector<ll> &nums)
     return lisMemo(nums, dp, 1, 0);
 }
 
-// Memoization / Iterative strategy
+// Memoization (Top-down) / Iterative strategy
 ll lisMemo(vector<ll> &nums, vector<ll> &dp, ll idx)
 {
     if (dp[idx] != -1)
