@@ -20,7 +20,7 @@ ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
     return unboundedKnapsackRecurse(weights, values, W, 0);
 }
 
-// Memoization (Top-down)
+// Memoization (Top-down) / Inclusion-exclusion strategy
 ll unboundedKnapsackMemo(vector<ll> &weights, vector<ll> &values, vector<vector<ll>> &dp, ll W, ll idx)
 {
     if (idx == weights.size())
@@ -43,6 +43,37 @@ ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
     ll n = weights.size();
     vector<vector<ll>> dp(n + 1, vector<ll>(W + 1, LLONG_MIN));
     return unboundedKnapsackMemo(weights, values, dp, W, 0);
+}
+
+
+// Memoization (Top-down) / Iterative strategy
+ll unboundedKnapsackMemo(vector<ll> &weights, vector<ll> &values, vector<ll> &dp, ll W)
+{
+    if (!W)
+    {
+        return 0;
+    }
+    if (dp[W] != LLONG_MIN)
+    {
+        return dp[W];
+    }
+
+    ll maxima = 0;
+    for (ll i = 0; i < weights.size(); i++)
+    {
+        if (weights[i] <= W)
+        {
+            maxima = max(maxima, values[i] + unboundedKnapsackMemo(weights, values, dp, W - weights[i]));
+        }
+    }
+    return dp[W] = maxima;
+}
+
+ll unboundedKnapsack(vector<ll> &weights, vector<ll> &values, ll W)
+{
+    ll n = weights.size();
+    vector<ll> dp(W + 1, LLONG_MIN);
+    return unboundedKnapsackMemo(weights, values, dp, W);
 }
 
 // Tabulation (Bottom-up)
