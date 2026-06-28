@@ -1,6 +1,7 @@
 // Time Complexity: O(2^n) Recursion | O(n^3) Memoization & Tabulation
 // Memory Complexity: O(n) Recursion | O(n^2) Memoization & Tabulation
 // Least number of multiplication operations required to multiply a chain of matrices
+// Partition DP strategy
 
 // Recursive
 ll mcmRecurse(vector<ll> &matrixDims, ll left, ll right)
