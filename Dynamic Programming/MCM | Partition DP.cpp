@@ -83,3 +83,7 @@ ll mcm(vector<ll> &matrixDims)
     }
     return dp[1][n - 1];
 }
+
+------------------------------------------------
+Application:
+https://cses.fi/problemset/task/1744/
