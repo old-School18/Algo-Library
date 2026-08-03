@@ -32,3 +32,7 @@ vector<ll> levelOrder(BT *root)
 
     return levelOrderNodes;
 }
+
+---------------------------------------
+Application:
+https://cses.fi/problemset/task/3359/
