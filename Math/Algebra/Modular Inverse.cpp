@@ -18,8 +18,9 @@ ll modInverse(ll a, ll M)
 {
     ll x, y;
     ll g = extendedEuclid(a, M, x, y);
-    if (g != 1) {
-    	return -1; // No inverse
+    if (g != 1)
+    {
+        return -1; // No inverse
     }
-    return x % M;
+    return (x % M + M) % M;
 }
