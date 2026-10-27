@@ -118,6 +118,44 @@ ll lis(vector<ll> &nums)
     return lisNums.size();
 }
 
+// Another Optimized LIS
+ll lis(vector<ll> &nums)
+{
+    ll n = nums.size();
+    vector<ll> dp(n + 1, INF);
+    dp[0] = -INF;
+    itr(i, 1, n)
+    {
+        auto lowerThan = [&](ll lo, ll hi) {
+            ll res = -1;
+            while (lo <= hi)
+            {
+                ll mid = lo + (hi - lo) / 2;
+                if (dp[mid] < nums[i - 1])
+                {
+                    res = mid;
+                    lo = mid + 1;
+                }
+                else
+                {
+                    hi = mid - 1;
+                }
+            }
+            return res;
+        };
+
+        ll res = lowerThan(0, i - 1);
+        if (res != -1 && dp[res + 1] > nums[i - 1])
+        {
+            dp[res + 1] = nums[i - 1];
+        }
+    }
+
+    ll lisLen = 0;
+    itr(i, 1, n) if (dp[i] != INF) lisLen = i;
+    return lisLen;
+}
+
 // Printing LIS
 vector<ll> lis(vector<ll> &nums)
 {
