@@ -2,7 +2,7 @@
 // Space Complexity: O(n)
 // Identify minimum number of rooms required to schedule N meetings
 
-// Sweep line appraoch – Maximum overlapping identification
+// Sweep line approach – Maximum overlapping identification
 class Comparator
 {
   public:
