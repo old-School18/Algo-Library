@@ -28,7 +28,7 @@ vector<vector<ll>> mergeIntervals(vector<vector<ll>> &intervals)
     return intervals;
 }
 
-// Interval Merging approach with iterators - Not as performant
+// Slow-fast pointer approach - Not as performant
 vector<vector<ll>> merge(vector<vector<ll>> &intervals)
 {
     sort(intervals.begin(), intervals.end());
