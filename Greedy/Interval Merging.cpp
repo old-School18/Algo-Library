@@ -28,6 +28,28 @@ vector<vector<ll>> mergeIntervals(vector<vector<ll>> &intervals)
     return intervals;
 }
 
+// Interval Merging approach with iterators - Not as performant
+vector<vector<ll>> merge(vector<vector<ll>> &intervals)
+{
+    sort(intervals.begin(), intervals.end());
+    auto slowItr = intervals.begin(), fastItr = intervals.begin();
+    fastItr++;
+    while (fastItr != intervals.end())
+    {
+        if (slowItr->at(0) <= fastItr->at(1) && slowItr->at(1) >= fastItr->at(0))
+        {
+            *slowItr = {min(slowItr->at(0), fastItr->at(0)), max(slowItr->at(1), fastItr->at(1))};
+            fastItr = intervals.erase(fastItr);
+        }
+        else
+        {
+            slowItr++;
+            fastItr++;
+        }
+    }
+    return intervals;
+}
+
 ---------------------------------
 Reference:
 https://leetcode.com/problems/merge-intervals/
