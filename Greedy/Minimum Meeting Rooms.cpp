@@ -32,15 +32,15 @@ ll sweepLine(vector<ll> &start, vector<ll> &end)
 
     sort(sweepList.begin(), sweepList.end(), Comparator());
 
-    ll overlaps = 0, maxOverlaps = 0;
+    ll sweepScore = 0, maxScore = 0;
 
     for (auto &p : sweepList)
     {
-        overlaps += p.second;
-        maxOverlaps = max(maxOverlaps, overlaps);
+        sweepScore += p.second;
+        maxScore = max(maxScore, sweepScore);
     }
 
-    return maxOverlaps;
+    return maxScore;
 }
 
 ---------------------------
