@@ -70,7 +70,8 @@ vector<ll> minResourcesAllocation(vector<ll> &start, vector<ll> &end)
         }
         else
         {
-            pq.push({p.first.second, ++resources});
+			allocatedResources[p.second] = ++resources;
+            pq.push({p.first.second, allocatedResources[p.second]});
         }
     }
 
