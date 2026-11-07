@@ -80,3 +80,4 @@ vector<ll> minResourcesAllocation(vector<ll> &start, vector<ll> &end)
 ---------------------------------
 Reference:
 https://neetcode.io/problems/meeting-schedule-ii/solution
+https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/description/
