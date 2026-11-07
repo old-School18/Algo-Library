@@ -8,7 +8,7 @@ class Comparator
   public:
     bool operator()(const pair<ll, ll> &x, const pair<ll, ll> &y)
     {
-		// tie-breaker - if a meeting cannot start right after a meeting ends in a given room
+		// tie-breaker - if an event cannot start right at the moment another event ends. If problem mentions that this does not count as a conflict, skip this condition
         if (x.first == y.first)
         {
             return x.second > y.second;
